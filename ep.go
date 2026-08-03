@@ -27,7 +27,7 @@ const (
 `
 
 	devName        = "INTELEON"
-	version        = "v1.0"
+	version        = "v1"
 	defaultTimeout = 10
 	defaultThreads = 20
 	maxBodySize    = 10 * 1024 * 1024 // 10MB
@@ -101,34 +101,34 @@ func showHelp() {
 func parseFlags() *Options {
 	opts := &Options{}
 
-	flag.StringVar(&opts.URL, "u", "", "")
-	flag.StringVar(&opts.URL, "url", "", "")
-	flag.StringVar(&opts.Wordlist, "w", "", "")
-	flag.StringVar(&opts.Wordlist, "wordlist", "", "")
-	flag.StringVar(&opts.Method, "m", "GET", "")
-	flag.StringVar(&opts.Method, "method", "GET", "")
-	flag.StringVar(&opts.Data, "d", "", "")
-	flag.StringVar(&opts.Data, "data", "", "")
-	flag.StringVar(&opts.Proxy, "p", "", "")
-	flag.StringVar(&opts.Proxy, "proxy", "", "")
-	flag.Var(&opts.Headers, "H", "")
-	flag.Var(&opts.Headers, "header", "")
-	flag.IntVar(&opts.Threads, "t", defaultThreads, "")
-	flag.IntVar(&opts.Threads, "threads", defaultThreads, "")
-	flag.IntVar(&opts.Delay, "delay", 0, "")
-	flag.IntVar(&opts.Timeout, "timeout", defaultTimeout, "")
-	flag.Int64Var(&opts.MaxBodySize, "max-size", maxBodySize, "")
-	flag.StringVar(&opts.IgnoreCodes, "ignore-code", "404", "")
-	flag.StringVar(&opts.IgnoreCodes, "ic", "404", "")
-	flag.BoolVar(&opts.Insecure, "insecure", false, "")
-	flag.BoolVar(&opts.FollowRedirect, "follow-redirects", false, "")
-	flag.StringVar(&opts.UserAgent, "user-agent", "")
-	flag.BoolVar(&opts.Silent, "silent", false, "")
-	flag.BoolVar(&opts.Verbose, "v", false, "")
-	flag.BoolVar(&opts.Verbose, "verbose", false, "")
+	flag.StringVar(&opts.URL, "u", "", "Target base URL")
+	flag.StringVar(&opts.URL, "url", "", "Target base URL")
+	flag.StringVar(&opts.Wordlist, "w", "", "Path to wordlist file")
+	flag.StringVar(&opts.Wordlist, "wordlist", "", "Path to wordlist file")
+	flag.StringVar(&opts.Method, "m", "GET", "HTTP method")
+	flag.StringVar(&opts.Method, "method", "GET", "HTTP method")
+	flag.StringVar(&opts.Data, "d", "", "Request body")
+	flag.StringVar(&opts.Data, "data", "", "Request body")
+	flag.StringVar(&opts.Proxy, "p", "", "Proxy URL")
+	flag.StringVar(&opts.Proxy, "proxy", "", "Proxy URL")
+	flag.Var(&opts.Headers, "H", "Custom header")
+	flag.Var(&opts.Headers, "header", "Custom header")
+	flag.IntVar(&opts.Threads, "t", defaultThreads, "Concurrent threads")
+	flag.IntVar(&opts.Threads, "threads", defaultThreads, "Concurrent threads")
+	flag.IntVar(&opts.Delay, "delay", 0, "Delay between requests in ms")
+	flag.IntVar(&opts.Timeout, "timeout", defaultTimeout, "Request timeout in seconds")
+	flag.Int64Var(&opts.MaxBodySize, "max-size", maxBodySize, "Max response body in bytes")
+	flag.StringVar(&opts.IgnoreCodes, "ignore-code", "404", "Status codes to ignore")
+	flag.StringVar(&opts.IgnoreCodes, "ic", "404", "Status codes to ignore")
+	flag.BoolVar(&opts.Insecure, "insecure", false, "Skip TLS verification")
+	flag.BoolVar(&opts.FollowRedirect, "follow-redirects", false, "Follow redirects")
+	flag.StringVar(&opts.UserAgent, "user-agent", "", "Custom User-Agent")
+	flag.BoolVar(&opts.Silent, "silent", false, "Silent mode")
+	flag.BoolVar(&opts.Verbose, "v", false, "Verbose output")
+	flag.BoolVar(&opts.Verbose, "verbose", false, "Verbose output")
 
-	help := flag.Bool("h", false, "")
-	flag.BoolVar(help, "help", false, "")
+	help := flag.Bool("h", false, "Show help")
+	flag.BoolVar(help, "help", false, "Show help")
 	flag.Usage = func() { showHelp() }
 	flag.Parse()
 
