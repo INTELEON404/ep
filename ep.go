@@ -26,7 +26,7 @@ const (
  \___|_|_\  
 `
 
-	devName        = "INTELEON"
+	devName        = "INTELEON404"
 	version        = "v1"
 	defaultTimeout = 10
 	defaultThreads = 20
